@@ -1,0 +1,37 @@
+### Get list of accounts from an 11 digit BVN
+POST https://api.okra.ng/v2/mock-api/accounts-by-bvn
+Content-Type: application/json
+
+{ 
+    "bvn": "11111111111"
+}
+
+### Confirm a NUBAN
+POST https://api.okra.ng/v2/mock-api/confirm-nuban
+Content-Type: application/json
+
+{ 
+	"nuban": "8317552496",
+	"bank": "okra",
+	"bvn": "11111111111"
+}
+
+### Confirm a NUBAN2
+POST https://api.okra.ng/v2/mock-api/confirm-nuban
+Content-Type: application/json
+
+{ 
+	"nuban": "8293847492",
+	"bank": "not-okra",
+	"bvn": "11111111111"
+}
+
+
+### Confirm a BVN
+POST https://api.okra.ng/v2/mock-api/confirm-bvn
+Content-Type: application/json
+
+{ 
+	"dob": "1988-10-01",
+	"bvn": "11111111111"
+}
