@@ -36,6 +36,12 @@ describe('E2E', () => {
     });
   });
 
+  describe('identity', () => {
+    it('should get a 401 when try to process identity without credentials', async () => {
+      return request(app.getHttpServer()).post('/identity/process').expect(401);
+    });
+  });
+
   afterAll(async () => {
     await app.close();
   });
