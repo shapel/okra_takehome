@@ -5,16 +5,16 @@ import { User } from './interfaces/user.interface';
 import { UsersService } from './users.service';
 
 @Controller('users')
-@UseGuards(JwtAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
   async create(@Body() createCatDto: CreateUserDto) {
-    this.usersService.create(createCatDto);
+    return this.usersService.create(createCatDto);
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }

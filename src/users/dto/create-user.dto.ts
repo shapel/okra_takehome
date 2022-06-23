@@ -1,7 +1,6 @@
 import { IsString, IsEmail, Length } from 'class-validator';
-import { User } from '../interfaces/user.interface';
 
-export class CreateUserDto implements Omit<User, 'id'> {
+export class CreateUserDto {
   @IsString()
   @Length(1)
   readonly firstName: string;
