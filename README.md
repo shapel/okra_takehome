@@ -2,6 +2,7 @@
 TODOs:
 - [ ] API pagination for customers & users
 - [ ] Use response serializers
+- [ ] Deploy 
 
 ## Preparing
 
