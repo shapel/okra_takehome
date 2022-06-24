@@ -2,7 +2,7 @@
 TODOs:
 - [ ] API pagination for customers & users
 - [ ] Use response serializers
-- [ ] Deploy 
+- [x] Deploy (https://okra-shapel.vercel.app)
 
 ## Preparing
 
