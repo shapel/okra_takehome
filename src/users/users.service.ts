@@ -35,7 +35,7 @@ export class UsersService {
     return user;
   }
 
-  async findAll(): Promise<User[]> {
-    return this.userModel.find();
+  async findAll(payload: Partial<User>): Promise<User[]> {
+    return this.userModel.find(payload);
   }
 }
