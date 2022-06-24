@@ -1,0 +1,1 @@
+export const IDENTITY_MODEL = 'IDENTITY_MODEL';

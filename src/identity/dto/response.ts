@@ -2,18 +2,21 @@ import { BVN } from '../values/bvn';
 import { NIN } from '../values/nin';
 import { NUBAN } from '../values/nuban';
 
-export interface Identity {
-  id: string;
-  bvn: BVN;
-  birthDate: Date;
-  fullName: string;
+export interface Response {
   firstName: string;
-  lastName: string;
   middleName: string;
-  emails: string[];
-  addresses: string[];
+  lastName: string;
+  aliases: string[];
+  dateOfBirth: string;
+  address: string;
+  gender: string;
+  photo_id: string;
   phones: string[];
-  bankAccounts: BankAccount[];
+  emails: string[];
+  fullName: string;
+  bvn: BVN;
+  customer: string;
+  identity: string;
   nin: NIN;
   lgaOrigin: string;
   lgaResidence: string;
@@ -21,21 +24,21 @@ export interface Identity {
   stateResidence: string;
   stateOrigin: string;
   enrollment: Enrollment;
-  onWatchlist: boolean;
+  watchlist: boolean;
   maritalStatus: string;
   accountLevel: string;
   verificationCountry: string;
-  gender: string;
-  photos: string[];
+  bankAccounts: BankAccount[];
 }
 
-export interface BankAccount {
+type BankAccount = {
   nuban: NUBAN;
   bank: string;
-  verifiedAt?: Date;
-}
+  registrationDate: string;
+  verificationDate?: string;
+};
 
 export interface Enrollment {
   bank: string;
-  registrationDate: Date;
+  registrationDate: string;
 }

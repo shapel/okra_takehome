@@ -1,15 +1,34 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { CustomersService } from '../customers/customers.service';
 import { ProcessIdentityDto } from './dto/process-identity.dto';
 import { IdentityService } from './identity.service';
+import { User } from '../auth/decorators/user.decorator';
+import { User as UserInterface } from '../users/interfaces/user.interface';
 
 @Controller('identity')
-@UseGuards(JwtAuthGuard)
 export class IdentityController {
-  constructor(private readonly identityService: IdentityService) {}
+  constructor(
+    private readonly identityService: IdentityService,
+    private readonly customerService: CustomersService,
+  ) {}
 
   @Post('process')
-  async process(@Body() processIdentityDto: ProcessIdentityDto) {
-    return this.identityService.process(processIdentityDto);
+  async process(
+    @User() user: UserInterface,
+    @Body() processIdentityDto: ProcessIdentityDto,
+  ) {
+    const identity = await this.identityService.verifyIdentity(
+      processIdentityDto,
+    );
+    if (!identity) {
+      throw new BadRequestException('Invalid BVN');
+    }
+    const customer = await this.customerService.ensureCustomer({
+      identity: identity.id,
+      createdBy: user.id,
+    });
+    // TODO: use serializer
+    const { id, ...identityWithoutId } = JSON.parse(JSON.stringify(identity));
+    return { ...identityWithoutId, identity: id, customer: customer.id };
   }
 }

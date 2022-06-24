@@ -25,6 +25,7 @@ export class VerificationService {
   }
 
   async confirmBVN(payload: { bvn: BVN; dob: string }): Promise<ConfirmBVNDto> {
+    console.log(JSON.stringify(payload));
     return this.post('https://api.okra.ng/v2/mock-api/confirm-bvn', payload);
   }
 

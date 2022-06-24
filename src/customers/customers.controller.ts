@@ -1,19 +1,19 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { Controller, Get, Param } from '@nestjs/common';
 import { CustomersService } from './customers.service';
+import { User } from '../auth/decorators/user.decorator';
+import { User as UserInterface } from '../users/interfaces/user.interface';
 
 @Controller('customers')
-@UseGuards(JwtAuthGuard)
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
   @Get()
-  findAll() {
-    return this.customersService.findAll();
+  findAll(@User() user: UserInterface) {
+    return this.customersService.findAll({ createdBy: user.id });
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.customersService.findOne(id);
+  findOne(@User() user: UserInterface, @Param('id') id: string) {
+    return this.customersService.findOne({ id, createdBy: user.id });
   }
 }

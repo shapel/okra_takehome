@@ -3,7 +3,6 @@ import { User } from '../../users/interfaces/user.interface';
 
 export interface Customer {
   id: string;
-  identity: Identity;
-  createdBy: User;
-  createdDate: Date;
+  identity: Identity | string;
+  createdBy: User | string;
 }
