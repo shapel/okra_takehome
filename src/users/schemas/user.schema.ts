@@ -6,7 +6,7 @@ import { User } from '../interfaces/user.interface';
 
 const transform = (document: UserDocument): User => {
   return {
-    id: document._id,
+    id: document.id,
     email: document.email,
     firstName: document.firstName,
     lastName: document.lastName,
@@ -15,11 +15,11 @@ const transform = (document: UserDocument): User => {
 @Schema({
   collection: 'shapel_users',
   timestamps: true,
+  id: true,
   toObject: { transform },
   toJSON: { transform },
 })
 export class UserDocument extends Document {
-  @Prop({ _id: true })
   id: string;
 
   @Prop({ required: true, unique: true, lowercase: true })
