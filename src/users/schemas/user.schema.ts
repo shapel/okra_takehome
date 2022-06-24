@@ -1,7 +1,7 @@
 import { Prop, Schema } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { SchemaFactory } from '@nestjs/mongoose';
-import * as passportLocalMongoose from 'passport-local-mongoose';
+import passportLocalMongoose from 'passport-local-mongoose';
 import { User } from '../interfaces/user.interface';
 
 const transform = (document: UserDocument): User => {

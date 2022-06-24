@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import configuration from '../common/configuration';
 import { DATABASE_CONNECTION } from './constants';
 

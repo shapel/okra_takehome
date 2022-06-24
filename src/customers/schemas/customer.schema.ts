@@ -4,7 +4,7 @@ import { SchemaFactory } from '@nestjs/mongoose';
 import { Customer } from '../interfaces/customer.interface';
 import { User } from '../../users/interfaces/user.interface';
 import { Identity } from '../../identity/interfaces/identity.interface';
-import * as mongooseAutopopulate from 'mongoose-autopopulate';
+import mongooseAutopopulate from 'mongoose-autopopulate';
 import { IdentityDocument } from '../../identity/schemas/identity.schema';
 import { UserDocument } from '../../users/schemas/user.schema';
 
@@ -23,7 +23,7 @@ const transform = (document: CustomerDocument): Customer => {
   toObject: { transform },
   toJSON: { transform },
 })
-export class CustomerDocument extends Document implements Customer {
+export class CustomerDocument extends mongoose.Document implements Customer {
   id: string;
 
   @Prop({
