@@ -15,7 +15,7 @@ export class UsersService {
   async create(user: CreateUserDto): Promise<User> {
     const { password, ...userWithoutPassword } = user;
     const result = await this.userModel.register(
-      userWithoutPassword as any, // TODO: check what wrong here
+      userWithoutPassword as any,
       password,
     );
     return result;
@@ -23,7 +23,6 @@ export class UsersService {
 
   async findOne(email: string): Promise<User | undefined> {
     const user = await this.userModel.findByUsername(email, false);
-    console.log(user);
     return user;
   }
 

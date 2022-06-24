@@ -16,7 +16,7 @@ describe('E2E', () => {
   });
 
   describe('login', () => {
-    it('should get a 401 when try to logging with incorrect credentials', async () => {
+    it('should get a 401 when trying to login with incorrect credentials', async () => {
       return request(app.getHttpServer())
         .post('/login')
         .send({ email: 'admin@amind.io', password: 'password' })
@@ -25,19 +25,22 @@ describe('E2E', () => {
   });
 
   describe('users', () => {
-    it('should get a 401 when try to get users without credentials', async () => {
+    it('should get 401 when trying to get users without credentials', async () => {
       return request(app.getHttpServer()).get('/users').expect(401);
     });
   });
 
   describe('customers', () => {
-    it('should get a 401 when try to get customer without credentials', async () => {
+    it('should get 401 when trying to get customers without credentials', async () => {
       return request(app.getHttpServer()).get('/customers').expect(401);
+    });
+    it('should get 401 when trying to get customer without credentials', async () => {
+      return request(app.getHttpServer()).get('/customers/1').expect(401);
     });
   });
 
   describe('identity', () => {
-    it('should get a 401 when try to process identity without credentials', async () => {
+    it('should get 401 when trying to process identity without credentials', async () => {
       return request(app.getHttpServer()).post('/identity/process').expect(401);
     });
   });
