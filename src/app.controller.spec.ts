@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { USER_MODEL } from './users/constants';
 import { User } from './users/interfaces/user.interface';
 import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
 
 const mockUser: User = {
   id: '1',
@@ -17,7 +18,7 @@ describe('AppController', () => {
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      imports: [AuthModule, UsersModule],
+      imports: [ConfigModule.forRoot(), AuthModule, UsersModule],
       controllers: [AppController],
       providers: [
         {
