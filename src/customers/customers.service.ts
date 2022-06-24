@@ -23,7 +23,6 @@ export class CustomersService {
     identity: string;
     createdBy: string;
   }): Promise<Customer> {
-    // TODO: add index on createdBy and identity
     const customer = await this.customerModel.findOne(payload);
     if (customer) {
       return customer;

@@ -45,3 +45,4 @@ export class CustomerDocument extends Document implements Customer {
 
 export const CustomerSchema = SchemaFactory.createForClass(CustomerDocument);
 CustomerSchema.plugin(mongooseAutopopulate as any);
+CustomerSchema.index({ createdBy: 1, identity: 1 }, { unique: true });
