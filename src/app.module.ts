@@ -5,10 +5,11 @@ import { UsersModule } from './users/users.module';
 import { CustomersModule } from './customers/customers.module';
 import { IdentityModule } from './identity/identity.module';
 import { ConfigModule } from '@nestjs/config';
+import configuration from './common/configuration';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     AuthModule,
     UsersModule,
     CustomersModule,
